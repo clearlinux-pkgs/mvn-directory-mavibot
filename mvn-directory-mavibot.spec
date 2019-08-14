@@ -4,16 +4,20 @@
 #
 Name     : mvn-directory-mavibot
 Version  : 1.0.0.m8
-Release  : 2
+Release  : 3
 URL      : https://github.com/apache/directory-mavibot/archive/1.0.0-M8.tar.gz
 Source0  : https://github.com/apache/directory-mavibot/archive/1.0.0-M8.tar.gz
-Source1  : https://repo1.maven.org/maven2/org/apache/directory/mavibot/mavibot-parent/1.0.0-M8/mavibot-parent-1.0.0-M8.pom
-Source2  : https://repo1.maven.org/maven2/org/apache/directory/mavibot/mavibot/1.0.0-M8/mavibot-1.0.0-M8.jar
-Source3  : https://repo1.maven.org/maven2/org/apache/directory/mavibot/mavibot/1.0.0-M8/mavibot-1.0.0-M8.pom
+Source1  : https://repo1.maven.org/maven2/org/apache/directory/mavibot/mavibot-parent/1.0.0-M1/mavibot-parent-1.0.0-M1.pom
+Source2  : https://repo1.maven.org/maven2/org/apache/directory/mavibot/mavibot-parent/1.0.0-M8/mavibot-parent-1.0.0-M8.pom
+Source3  : https://repo1.maven.org/maven2/org/apache/directory/mavibot/mavibot/1.0.0-M1/mavibot-1.0.0-M1.jar
+Source4  : https://repo1.maven.org/maven2/org/apache/directory/mavibot/mavibot/1.0.0-M1/mavibot-1.0.0-M1.pom
+Source5  : https://repo1.maven.org/maven2/org/apache/directory/mavibot/mavibot/1.0.0-M8/mavibot-1.0.0-M8.jar
+Source6  : https://repo1.maven.org/maven2/org/apache/directory/mavibot/mavibot/1.0.0-M8/mavibot-1.0.0-M8.pom
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: mvn-directory-mavibot-data = %{version}-%{release}
+Requires: mvn-directory-mavibot-license = %{version}-%{release}
 
 %description
 No detailed description available
@@ -26,19 +30,40 @@ Group: Data
 data components for the mvn-directory-mavibot package.
 
 
+%package license
+Summary: license components for the mvn-directory-mavibot package.
+Group: Default
+
+%description license
+license components for the mvn-directory-mavibot package.
+
+
 %prep
+%setup -q -n directory-mavibot-1.0.0-M8
 
 %build
 
 %install
+mkdir -p %{buildroot}/usr/share/package-licenses/mvn-directory-mavibot
+cp LICENSE %{buildroot}/usr/share/package-licenses/mvn-directory-mavibot/LICENSE
+cp NOTICE %{buildroot}/usr/share/package-licenses/mvn-directory-mavibot/NOTICE
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot-parent/1.0.0-M1
+cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot-parent/1.0.0-M1/mavibot-parent-1.0.0-M1.pom
+
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot-parent/1.0.0-M8
-cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot-parent/1.0.0-M8/mavibot-parent-1.0.0-M8.pom
+cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot-parent/1.0.0-M8/mavibot-parent-1.0.0-M8.pom
+
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot/1.0.0-M1
+cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot/1.0.0-M1/mavibot-1.0.0-M1.jar
+
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot/1.0.0-M1
+cp %{SOURCE4} %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot/1.0.0-M1/mavibot-1.0.0-M1.pom
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot/1.0.0-M8
-cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot/1.0.0-M8/mavibot-1.0.0-M8.jar
+cp %{SOURCE5} %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot/1.0.0-M8/mavibot-1.0.0-M8.jar
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot/1.0.0-M8
-cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot/1.0.0-M8/mavibot-1.0.0-M8.pom
+cp %{SOURCE6} %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot/1.0.0-M8/mavibot-1.0.0-M8.pom
 
 
 %files
@@ -46,6 +71,14 @@ cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/apache/directory/ma
 
 %files data
 %defattr(-,root,root,-)
+/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot-parent/1.0.0-M1/mavibot-parent-1.0.0-M1.pom
 /usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot-parent/1.0.0-M8/mavibot-parent-1.0.0-M8.pom
+/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot/1.0.0-M1/mavibot-1.0.0-M1.jar
+/usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot/1.0.0-M1/mavibot-1.0.0-M1.pom
 /usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot/1.0.0-M8/mavibot-1.0.0-M8.jar
 /usr/share/java/.m2/repository/org/apache/directory/mavibot/mavibot/1.0.0-M8/mavibot-1.0.0-M8.pom
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/mvn-directory-mavibot/LICENSE
+/usr/share/package-licenses/mvn-directory-mavibot/NOTICE
