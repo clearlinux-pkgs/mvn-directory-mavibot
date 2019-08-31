@@ -4,7 +4,7 @@
 #
 Name     : mvn-directory-mavibot
 Version  : 1.0.0.m8
-Release  : 4
+Release  : 5
 URL      : https://github.com/apache/directory-mavibot/archive/1.0.0-M8.tar.gz
 Source0  : https://github.com/apache/directory-mavibot/archive/1.0.0-M8.tar.gz
 Source1  : https://repo1.maven.org/maven2/org/apache/directory/mavibot/mavibot-parent/1.0.0-M1/mavibot-parent-1.0.0-M1.pom
